@@ -30,6 +30,12 @@ const db = {
       price: 1300,
       qty: 80,
     },
+    {
+      id: 3,
+      title: "ipod",
+      price: 6000,
+      qty: 10,
+    },
   ],
 };
 
@@ -88,10 +94,24 @@ function renderStore() {
   const html = db.items.map((item) => {
     return `
         <div class="item">
-            <div>
-                
+            <div class="title">${item.title}</div>
+            <div class="price">${numberToCurrency(item.price)}</div>
+            <div class="qty">${item.qty}</div>
+            <div class="actions">
+                <button class="add" data-id=${
+                  item.id
+                }>Add to Shopping Car</button>
             </div>
         </div>
         `;
   });
+  document.querySelector("#store-container").innerHTML = html.join("");
+}
+
+function numberToCurrency(n) {
+  return new Intl.NumberFormat("en-US", {
+    maximumSignificantDigits: 2,
+    style: "currency",
+    currency: "USD",
+  }).format(n);
 }
