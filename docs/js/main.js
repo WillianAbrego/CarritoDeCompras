@@ -165,6 +165,36 @@ function renderShoppingCart() {
   );
   shoppingCartContainer.innerHTML =
     closeButton + html.join("") + totalContainer + purchaseButton;
+
+  document.querySelectorAll(".addOne").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const id = parseInt(button.getAttribute("data-id"));
+      shoppingCart.methods.add(id, 1);
+      renderShoppingCart();
+    });
+  });
+
+  document.querySelectorAll(".removeOne").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const id = parseInt(button.getAttribute("data-id"));
+      shoppingCart.methods.remove(id, 1);
+      renderShoppingCart();
+    });
+  });
+
+  document.querySelector(".bClose").addEventListener("click", (e) => {
+    shoppingCartContainer.classList.remove("show");
+    shoppingCartContainer.classList.add("hide");
+  });
+
+  const bPurchase = document.querySelector("#bPurchase");
+  if (bPurchase) {
+    bPurchase.addEventListener("click", (e) => {
+      shoppingCart.methods.purchase();
+      renderStore();
+      renderShoppingCart();
+    });
+  }
 }
 
 function numberToCurrency(n) {
