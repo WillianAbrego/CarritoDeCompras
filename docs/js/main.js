@@ -163,6 +163,8 @@ function renderShoppingCart() {
   const shoppingCartContainer = document.querySelector(
     "#shopping-cart-container"
   );
+  shoppingCartContainer.classList.remove("hide");
+  shoppingCartContainer.classList.add("show");
   shoppingCartContainer.innerHTML =
     closeButton + html.join("") + totalContainer + purchaseButton;
 
