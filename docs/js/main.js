@@ -26,7 +26,7 @@ const db = {
     },
     {
       id: 2,
-      title: "Phillips Hue",
+      title: "tv",
       price: 1300,
       qty: 80,
     },
